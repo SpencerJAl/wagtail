@@ -11,8 +11,10 @@ from streams import blocks
 class FlexPage(Page):
     template="flex/flex_page.html" 
     content = StreamField([
-        ("title_and_text", blocks.TitleAndTextBlock()) 
-        
+        ("title_and_text", blocks.TitleAndTextBlock()),
+        ("full_rich_text", blocks.RichTextBlock()),
+        ("simple_rich_text", blocks.SimpleRichTextBlock()), 
+ 
     ],
     null=True, 
     blank=True
