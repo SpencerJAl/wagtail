@@ -1,5 +1,6 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+
 class TitleAndTextBlock(blocks.StructBlock):
 
     title = blocks.CharBlock(required=True, help_text='Add Title')
@@ -25,10 +26,11 @@ class CardBlock(blocks.StructBlock):
       )
     )
     class meta: #noqa
-        template = "streams/card_block.html"
+        template = "streams/Card.html"
         icon = "placeholder"
-        label = "Staff Cards"
+        label = "Staff Card"
 
+    
 class RichTextBlock(blocks.RichTextBlock):
      
      class meta: #noqa
@@ -50,3 +52,16 @@ class SimpleRichTextBlock(blocks.RichTextBlock):
             template = "streams/richtext_block.html"
             icon = "edit"
             label = "Simple Rich Text"
+
+class ctaBlock(blocks.StructBlock):
+
+    title = blocks.CharBlock(required=True, max_length=50)
+    text =  blocks.RichTextBlock(required=True, features=["bold", "italic", "link"], max_length=400)
+    button_page = blocks.PageChooserBlock(required=False)
+    button_url = blocks.URLBlock(required=False, help_text="If button page is not selected then it will default here")
+    button_text = blocks.CharBlock(required=True, max_length=50, default="Learn More")
+
+    class meta: #noqa
+       template = "streams/cta_block.html"
+       icon = "edit"
+       label = "call to action"
